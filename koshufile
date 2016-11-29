@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+tag='kristofferahl/envsubst'
+
+task docker:build {
+  docker build -t "$tag" ./src
+}
+
+task docker:test {
+  input="$(cat ./test/input.yml)"
+  expected="$(cat ./test/expected.yml)"
+  actual="$(docker run --rm -e "VERSION=1.0.1" $tag "$input")"
+
+  verbose "Expected:"
+  echo "$expected"
+
+  verbose "Got:"
+  echo "$actual"
+
+  if [[ "$actual" != "$expected" ]]; then
+    error "Test did not meet expectation"
+  fi
+}
