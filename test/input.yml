@@ -1,0 +1,5 @@
+api:
+  version: ${VERSION}
+  nodes:
+    - rh-1
+    - rh-2

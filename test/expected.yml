@@ -1,0 +1,5 @@
+api:
+  version: 1.0.1
+  nodes:
+    - rh-1
+    - rh-2
